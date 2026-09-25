@@ -91,6 +91,16 @@ const t = (id, title, icon, desc, folder) => ({
  * ============================================================ */
 export const GROUPS = [
   {
+    id: 'foundations',
+    title: { it: 'Fondamenti', en: 'Foundations' },
+    desc: {
+      it: 'Concetti trasversali su linguaggi, strumenti e sviluppo software.',
+      en: 'Cross-cutting concepts about languages, tools, and software development.'
+    },
+    icon: Code2,
+    color: '#64748B'
+  },
+  {
     id: 'languages',
     title: { it: 'Linguaggi', en: 'Languages' },
     desc: {
@@ -159,6 +169,42 @@ export const GROUPS = [
  * CATEGORIES — sotto ogni group; raggruppano i topic correlati
  * ============================================================ */
 export const CATEGORIES = [
+  /* -------- Fondamenti di informatica -------- */
+  {
+    id: 'computer-science-foundations',
+    groupId: 'foundations',
+    title: { it: 'Fondamenti di informatica', en: 'Computer science foundations' },
+    code: 'CS',
+    color: '#64748B',
+    icon: Code2,
+    desc: {
+      it: 'Concetti trasversali su linguaggi, strumenti e sviluppo software.',
+      en: 'Cross-cutting concepts about languages, tools, and software development.'
+    },
+    topics: [
+      t(
+        'programming-languages',
+        { it: 'Tipi di linguaggi', en: 'Programming language types' },
+        Code2,
+        {
+          it: 'Linguaggi compilati, interpretati e ibridi: modelli ed esempi pratici.',
+          en: 'Compiled, interpreted, and hybrid languages: models and practical examples.'
+        },
+        'languages'
+      ),
+      t(
+        'git-conventions',
+        { it: 'Convenzioni Git', en: 'Git conventions' },
+        GitMerge,
+        {
+          it: 'Tipi di commit Conventional: feat, fix, chore, refactor, docs e style.',
+          en: 'Conventional Commit types: feat, fix, chore, refactor, docs, and style.'
+        },
+        'architettura'
+      )
+    ]
+  },
+
   /* -------- Linguaggi -------- */
   {
     id: 'java',
@@ -172,16 +218,6 @@ export const CATEGORIES = [
       en: 'All things Java: language, OOP, concurrency, async, Streams, ForkJoinPool.'
     },
     topics: [
-      t(
-        'programming-languages',
-        { it: 'Tipi di linguaggi', en: 'Programming language types' },
-        Code2,
-        {
-          it: 'Linguaggi compilati, interpretati e ibridi: modelli ed esempi pratici.',
-          en: 'Compiled, interpreted, and hybrid languages: models and practical examples.'
-        },
-        'languages'
-      ),
       t(
         'immutability',
         { it: 'Mutabilità & Immutabilità', en: 'Mutability & Immutability' },
@@ -261,16 +297,6 @@ export const CATEGORIES = [
           en: 'Listeners, callback hell, from callback to Future to reactive.'
         },
         'java-core'
-      ),
-      t(
-        'git-conventions',
-        { it: 'Convenzioni Git', en: 'Git conventions' },
-        GitMerge,
-        {
-          it: 'Tipi di commit conventional: feat, fix, chore, refactor, docs e style.',
-          en: 'Conventional commit types: feat, fix, chore, refactor, docs, and style.'
-        },
-        'architettura'
       )
     ]
   },
@@ -558,29 +584,43 @@ export const CATEGORIES = [
     ]
   },
 
-  /* -------- AI & LLM -------- */
+  /* -------- AI & LLM: fondamenti e strumenti Java in categorie distinte -------- */
   {
-    id: 'spring-ai',
+    id: 'artificial-intelligence',
     groupId: 'ai',
-    title: { it: 'Spring AI & LangChain4j', en: 'Spring AI & LangChain4j' },
+    title: { it: 'Intelligenza artificiale', en: 'Artificial intelligence' },
     code: 'AI',
     color: '#EC4899',
-    icon: Bot,
+    icon: BrainCircuit,
     desc: {
-      it: 'LLM in Java: prompt, embeddings, RAG, function calling, agent.',
-      en: 'LLMs in Java: prompts, embeddings, RAG, function calling, agents.'
+      it: 'Fondamenti di AI, machine learning, modelli generativi e loro valutazione.',
+      en: 'AI fundamentals, machine learning, generative models, and evaluation.'
     },
     topics: [
       t(
         'artificial-intelligence',
-        { it: 'Intelligenza artificiale', en: 'Artificial intelligence' },
+        { it: 'Fondamenti di AI', en: 'AI fundamentals' },
         BrainCircuit,
         {
           it: 'Concetti fondamentali di AI, machine learning e AI generativa, con esempi pratici.',
           en: 'Core AI, machine learning, and generative AI concepts, with practical examples.'
         },
         'emerging-tech'
-      ),
+      )
+    ]
+  },
+  {
+    id: 'java-ai-frameworks',
+    groupId: 'ai',
+    title: { it: 'Framework AI per Java', en: 'AI frameworks for Java' },
+    code: 'JAI',
+    color: '#DB2777',
+    icon: Bot,
+    desc: {
+      it: 'Librerie per integrare LLM e workflow AI nelle applicazioni Java.',
+      en: 'Libraries for integrating LLMs and AI workflows into Java applications.'
+    },
+    topics: [
       t(
         'spring-ai',
         { it: 'Spring AI & LangChain4j', en: 'Spring AI & LangChain4j' },
