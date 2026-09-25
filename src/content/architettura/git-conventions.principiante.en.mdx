@@ -1,0 +1,36 @@
+# Git commit types
+
+A clear commit message explains what changed in the project. A common
+convention is **Conventional Commits**, which prefixes the message with a
+type, an optional scope, and `:`.
+
+```text
+<type>(optional scope): short description
+```
+
+## Common types
+
+- **`feat`** (*feature*): adds functionality. Example:
+  `feat(search): add topic filters`.
+- **`fix`**: fixes a bug. Example: `fix(login): handle expired sessions`.
+- **`chore`**: maintenance that does not change app behavior, such as updating
+  a development script.
+- **`refactor`**: reorganizes code without changing its observable behavior.
+- **`docs`**: changes documentation.
+- **`style`**: changes code formatting or style without changing its logic,
+  such as whitespace and indentation.
+
+```text
+feat(api): add pagination to user list
+fix(cart): prevent negative quantities
+docs(readme): explain local setup
+```
+
+## Why use them?
+
+Consistent messages make history easier to read and help identify the type and
+scope of a change. Exact meanings can vary by team, so check the repository's
+conventions. In Conventional Commits, `feat` indicates a backwards-compatible
+feature for a *minor* release and `fix` indicates a backwards-compatible bug
+fix for a *patch* release; the other types do not imply a release by
+themselves.

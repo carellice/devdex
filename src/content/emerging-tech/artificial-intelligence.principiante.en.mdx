@@ -1,0 +1,49 @@
+# Artificial intelligence: the basics
+
+**Artificial intelligence (AI)** covers methods that let systems perform
+tasks such as recognizing images, understanding text, or making predictions.
+It is not one technology, and it does not mean a computer reasons like a
+person.
+
+## AI, machine learning, and deep learning
+
+- **AI** is the broad field: it includes rule-based systems and methods that
+  learn from data.
+- **Machine learning (ML)** is a subset of AI: a model learns patterns from
+  examples instead of receiving every rule as hand-written instructions.
+- **Deep learning** uses neural networks with many layers to learn complex
+  representations, for example in images, speech, and text.
+
+```text
+AI
+└── Machine learning
+    └── Deep learning (deep neural networks)
+```
+
+## An example: filtering unwanted email
+
+Imagine emails labeled “spam” or “legitimate.” During training, a model
+examines examples and learns associations between words, sender, and class.
+It then assigns a probability to a new email. The result depends on data
+quality and variety; a model can make mistakes or reflect biases in its
+examples.
+
+```text
+Labeled examples → training → model → new email → spam probability
+```
+
+## Generative AI
+
+A generative model creates new content in response to input, such as text,
+images, or code. An **LLM** (*Large Language Model*) generates text by
+predicting the next token from its context. It can produce a fluent but
+invented answer: verify facts, calculations, and sources when accuracy
+matters.
+
+## When should you use a model?
+
+Start with the problem and a simple solution, such as rules or traditional
+search. A model can help when data contains patterns that are hard to describe
+by hand and you can measure the result. Consider privacy, cost, latency, data
+quality, errors, and the need for human review. “AI” does not automatically
+mean better or autonomous.

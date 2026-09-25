@@ -1,0 +1,69 @@
+# Artificial intelligence: from problem to model
+
+Practical AI starts by turning a need into a measurable task. Choose a simple
+baseline, gather suitable data, evaluate errors, and decide whether a model
+provides real value.
+
+## Learning paradigms
+
+- **Supervised learning**: examples include the expected answer. Examples:
+  categorizing support tickets or estimating delivery time.
+- **Unsupervised learning**: examples have no labels; the system looks for
+  groups or structure, such as user segments with similar behavior.
+- **Reinforcement learning**: an agent takes actions in an environment and
+  receives rewards or penalties. It is used, among other cases, for sequential
+  decisions.
+
+These categories describe how a system learns, not its final function.
+Text generation, for example, can combine pretraining on large text datasets
+with further adaptation.
+
+## Example: classifying support tickets
+
+1. Define useful classes, such as `billing`, `access`, and `other`.
+2. Prepare representative examples and split data into training, validation,
+   and test sets without duplicates or leakage between groups.
+3. Create a baseline, such as assigning everything to the most common class.
+4. Train and compare models on the validation set; use the test set only for
+   the final evaluation.
+5. Inspect errors by class and check that test data resembles real traffic.
+
+For imbalanced classes, accuracy can be misleading. Precision measures how
+many positive predictions are correct; recall measures how many positive
+cases are found. A confusion matrix shows the types of errors.
+
+## A simple Python workflow
+
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import make_pipeline
+
+X_train, X_test, y_train, y_test = train_test_split(
+    texts, labels, test_size=0.2, random_state=42, stratify=labels
+)
+model = make_pipeline(TfidfVectorizer(), LogisticRegression(max_iter=1000))
+model.fit(X_train, y_train)
+print(model.score(X_test, y_test))
+```
+
+The displayed score is accuracy: interpret it alongside precision, recall,
+and product-relevant errors. For small datasets, the estimate may vary a lot
+between different splits.
+
+## Generative AI and LLMs
+
+An LLM can help with summarization, rewriting, and natural-language
+interaction. A **prompt** provides context and a task, but does not guarantee
+correctness. Retrieving relevant documents (**RAG**) can provide current
+sources to the model, but does not guarantee that it interprets them
+correctly. Validate structured output against a schema and treat generated
+content as untrusted.
+
+## Responsible evaluation
+
+Measure task quality, cost, and latency. Examine difficult examples, affected
+groups, and personal data; limit access and decide when human review is
+needed. Monitoring after release helps detect changes in data or error
+distribution.

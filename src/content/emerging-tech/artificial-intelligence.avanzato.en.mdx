@@ -1,0 +1,73 @@
+# Designing systems with generative AI
+
+An LLM application is a system made of a model, prompts, data, integrations,
+and controls. Quality does not come from making a prompt ever longer: it
+requires explicit boundaries, repeatable evaluations, and safe fallback
+behavior.
+
+## The LLM as a probabilistic component
+
+Generation predicts tokens in sequence from context. Temperature, instructions,
+and model change the response distribution; they do not turn output into a
+verified fact. A model does not automatically know the state of your database
+or whether its answer is true.
+
+Use tools or retrieval over authorized sources for current data. Delegate
+deterministic calculations to verifiable code. For ambiguous, refused, or
+out-of-scope requests, define an explicit fallback response.
+
+## Integration patterns
+
+### Structured output
+
+Request a format and validate it server-side. Syntactic validation does not
+guarantee semantic validity or that values are authorized.
+
+```json
+{
+  "category": "billing",
+  "confidence": 0.86,
+  "needsHumanReview": false
+}
+```
+
+Check that `category` belongs to an allowed set, validate the bounds of
+`confidence`, and enforce review policy outside the model.
+
+### Retrieval Augmented Generation (RAG)
+
+1. Retrieve documents the current user is allowed to access.
+2. Filter and rerank results for relevance.
+3. Give the model only necessary excerpts and instruct it to cite sources.
+4. Verify that citations actually point to retrieved excerpts.
+
+RAG reduces the need to put all application knowledge into model weights, but
+does not prevent unsupported answers or malicious instructions in documents.
+Enforce permissions before retrieval; a prompt is not a security boundary.
+
+### Tool calling
+
+The model may propose a tool call; the application validates the name, schema,
+identity, permissions, and parameters before execution. Use allowlists,
+timeouts, rate limits, and logs without secrets. Require human confirmation
+before irreversible actions or actions with external effects.
+
+## Evaluating a pipeline
+
+Keep a dataset of representative and adversarial cases. Evaluate retrieval
+(coverage and relevance), generation (support from sources, completeness), and
+the system (latency, cost, errors, correct refusals) separately. Combine
+automated metrics with human review; another LLM's judgment is a signal, not
+proof.
+
+Record prompt, model, index, and parameter versions alongside results. Repeat
+evaluation when any of them changes and compare regression cases before
+release.
+
+## Security and privacy
+
+Consider prompt injection in retrieved content, data exfiltration, tool abuse,
+and unsafe HTML or SQL output. Treat inputs and outputs as untrusted data,
+apply least privilege, minimize data sent to the provider, and define
+retention and deletion. A model may suggest a decision, but application code
+must enforce authorization.

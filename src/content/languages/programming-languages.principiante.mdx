@@ -1,0 +1,44 @@
+# Tipi di linguaggi di programmazione
+
+Un **linguaggio di programmazione** permette di descrivere istruzioni che un
+computer può eseguire. Il processore capisce istruzioni macchina: compilatori e
+interpreti traducono il programma dal linguaggio usato dalle persone.
+
+## Linguaggi compilati
+
+Un **compilatore** traduce il programma, o una parte di esso, prima
+dell'esecuzione. Per esempio, `gcc main.c -o app` compila un programma C in un
+eseguibile nativo. Gli errori rilevati in compilazione emergono prima di
+avviare il programma; l'eseguibile può essere molto rapido, ma spesso dipende
+dal sistema operativo e dall'architettura per cui è stato creato.
+
+## Linguaggi interpretati
+
+Un **interprete** legge ed esegue il programma durante l'esecuzione. Python e
+JavaScript sono spesso descritti come interpretati; in pratica gli ambienti
+moderni possono compilare parti del codice al volo. Per esempio, Python avvia
+uno script con `python script.py`. È semplice provare il codice, ma errori
+dinamici possono emergere solo raggiungendo la riga che li contiene.
+
+## Modelli ibridi
+
+Molti linguaggi combinano i due approcci. `javac` traduce il sorgente Java in
+**bytecode** (`.class`), poi la **JVM** lo interpreta e può compilare a runtime
+le parti più usate (JIT, *Just-In-Time*). La JVM rende Java portabile fra
+sistemi che la supportano.
+
+```text
+Codice Java → javac → bytecode → JVM (interprete + JIT) → processore
+Codice C    → compilatore C    → eseguibile nativo      → processore
+```
+
+Anche C# usa normalmente un formato intermedio e il runtime .NET; JavaScript
+può essere interpretato e ottimizzato con JIT dal browser o da Node.js.
+
+## Non esiste una sola classifica
+
+“Compilato” e “interpretato” descrivono soprattutto **quando e come** avviene la
+traduzione, non la qualità o la difficoltà del linguaggio. Prestazioni,
+portabilità e feedback dipendono anche dall'implementazione, dal runtime e dal
+caso d'uso. Quando scegli, considera ambiente di distribuzione, strumenti,
+prestazioni richieste e competenze del team.

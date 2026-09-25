@@ -173,6 +173,16 @@ export const CATEGORIES = [
     },
     topics: [
       t(
+        'programming-languages',
+        { it: 'Tipi di linguaggi', en: 'Programming language types' },
+        Code2,
+        {
+          it: 'Linguaggi compilati, interpretati e ibridi: modelli ed esempi pratici.',
+          en: 'Compiled, interpreted, and hybrid languages: models and practical examples.'
+        },
+        'languages'
+      ),
+      t(
         'immutability',
         { it: 'Mutabilità & Immutabilità', en: 'Mutability & Immutability' },
         Lock,
@@ -251,6 +261,16 @@ export const CATEGORIES = [
           en: 'Listeners, callback hell, from callback to Future to reactive.'
         },
         'java-core'
+      ),
+      t(
+        'git-conventions',
+        { it: 'Convenzioni Git', en: 'Git conventions' },
+        GitMerge,
+        {
+          it: 'Tipi di commit conventional: feat, fix, chore, refactor, docs e style.',
+          en: 'Conventional commit types: feat, fix, chore, refactor, docs, and style.'
+        },
+        'architettura'
       )
     ]
   },
@@ -551,6 +571,16 @@ export const CATEGORIES = [
       en: 'LLMs in Java: prompts, embeddings, RAG, function calling, agents.'
     },
     topics: [
+      t(
+        'artificial-intelligence',
+        { it: 'Intelligenza artificiale', en: 'Artificial intelligence' },
+        BrainCircuit,
+        {
+          it: 'Concetti fondamentali di AI, machine learning e AI generativa, con esempi pratici.',
+          en: 'Core AI, machine learning, and generative AI concepts, with practical examples.'
+        },
+        'emerging-tech'
+      ),
       t(
         'spring-ai',
         { it: 'Spring AI & LangChain4j', en: 'Spring AI & LangChain4j' },

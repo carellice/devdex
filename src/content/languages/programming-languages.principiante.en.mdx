@@ -1,0 +1,44 @@
+# Programming language types
+
+A **programming language** lets us describe instructions a computer can run. A
+processor understands machine instructions; compilers and interpreters
+translate programs from the languages people use.
+
+## Compiled languages
+
+A **compiler** translates a program, or part of it, before execution. For
+example, `gcc main.c -o app` compiles a C program into a native executable.
+Errors caught during compilation show up before the program starts; the
+executable can be fast, but often depends on the operating system and
+processor architecture it was built for.
+
+## Interpreted languages
+
+An **interpreter** reads and executes a program at runtime. Python and
+JavaScript are often described as interpreted; in practice, modern runtimes
+may compile some code on the fly. For example, Python runs a script with
+`python script.py`. Trying code is straightforward, but dynamic errors may
+appear only when execution reaches the relevant line.
+
+## Hybrid models
+
+Many languages combine both approaches. `javac` translates Java source into
+**bytecode** (`.class` files), then the **JVM** interprets it and may compile
+frequently used parts at runtime (JIT, *Just-In-Time*). The JVM makes Java
+portable across systems that support it.
+
+```text
+Java code → javac → bytecode → JVM (interpreter + JIT) → processor
+C code    → C compiler → native executable             → processor
+```
+
+C# also commonly uses an intermediate format and the .NET runtime; JavaScript
+may be interpreted and JIT-optimized by a browser or Node.js.
+
+## There is no single ranking
+
+“Compiled” and “interpreted” mainly describe **when and how** translation
+happens, not a language's quality or difficulty. Performance, portability, and
+feedback also depend on the implementation, runtime, and use case. When
+choosing, consider the deployment environment, tools, performance needs, and
+team skills.

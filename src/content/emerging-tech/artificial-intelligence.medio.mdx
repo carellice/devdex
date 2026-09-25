@@ -1,0 +1,69 @@
+# Intelligenza artificiale: dal problema al modello
+
+Per usare l'AI in modo concreto occorre trasformare un bisogno in un compito
+misurabile. Prima scegli una baseline semplice, poi raccogli dati adatti,
+valuti gli errori e decidi se un modello porta un vantaggio reale.
+
+## Tipi di apprendimento
+
+- **Supervisionato**: esempi con la risposta attesa. Esempi: classificare
+  ticket per categoria o stimare il tempo di consegna.
+- **Non supervisionato**: esempi senza etichette; si cercano gruppi o strutture,
+  come segmenti di utenti con comportamenti simili.
+- **Per rinforzo**: un agente compie azioni in un ambiente e riceve ricompense o
+  penalità. È usato, tra gli altri casi, per decisioni sequenziali.
+
+Queste categorie descrivono il modo in cui il sistema apprende, non la
+funzionalità finale. Generare testo, per esempio, può combinare pre-addestramento
+su grandi quantità di testo e ulteriore adattamento.
+
+## Esempio: classificare ticket di supporto
+
+1. Definisci classi utili, come `pagamenti`, `accesso` e `altro`.
+2. Prepara esempi rappresentativi e dividi i dati in training, validation e
+   test senza duplicati o contaminazione fra gruppi.
+3. Crea una baseline, per esempio classificare tutto nella classe più comune.
+4. Addestra e confronta modelli sul validation set; usa il test solo per la
+   valutazione finale.
+5. Controlla gli errori per classe e verifica se i dati di test assomigliano al
+   traffico reale.
+
+Per classi sbilanciate, l'accuratezza può ingannare. Precisione misura quante
+predizioni positive sono corrette; recall misura quanti casi positivi vengono
+trovati. La matrice di confusione mostra i tipi di errore.
+
+## Un flusso semplice con Python
+
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import make_pipeline
+
+X_train, X_test, y_train, y_test = train_test_split(
+    testi, etichette, test_size=0.2, random_state=42, stratify=etichette
+)
+model = make_pipeline(TfidfVectorizer(), LogisticRegression(max_iter=1000))
+model.fit(X_train, y_train)
+print(model.score(X_test, y_test))
+```
+
+Il punteggio mostrato è l'accuratezza: va interpretato insieme a precisione,
+recall ed errori importanti per il prodotto. Per dati piccoli, la stima può
+variare molto fra diverse divisioni del dataset.
+
+## AI generativa e LLM
+
+Un LLM è utile per sintesi, riscrittura e interazione in linguaggio naturale.
+Il **prompt** definisce contesto e compito, ma non garantisce correttezza.
+Recuperare documenti pertinenti (**RAG**) può fornire fonti aggiornate al
+modello, ma non assicura che la risposta le interpreti correttamente. Controlla
+output strutturati con uno schema e tratta come non affidabili i contenuti
+generati.
+
+## Valutazione responsabile
+
+Misura qualità sul compito, costo e latenza. Esamina esempi difficili, gruppi
+interessati e dati personali; limita gli accessi e definisci quando serve una
+revisione umana. Il monitoraggio dopo il rilascio aiuta a scoprire cambiamenti
+nei dati o nella distribuzione degli errori.

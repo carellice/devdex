@@ -1,0 +1,74 @@
+# Progettare sistemi con AI generativa
+
+Un'applicazione basata su LLM è un sistema composto da modello, prompt, dati,
+integrazioni e controlli. La qualità non si ottiene scrivendo un prompt sempre
+più lungo: servono confini espliciti, valutazioni ripetibili e modalità di
+degrado sicure.
+
+## L'LLM come componente probabilistica
+
+La generazione predice token in sequenza in base al contesto. Temperatura,
+istruzioni e modello cambiano la distribuzione delle risposte, non trasformano
+l'output in un fatto verificato. Un modello non conosce automaticamente lo
+stato del tuo database né se la sua risposta è vera.
+
+Per dati aggiornati usa strumenti o retrieval con sorgenti autorizzate. Per
+calcoli deterministici delega a codice verificabile. Se la richiesta è ambigua,
+rifiutata o fuori ambito, definisci una risposta di fallback esplicita.
+
+## Pattern di integrazione
+
+### Output strutturato
+
+Richiedi un formato e validalo lato server. La validazione sintattica non
+garantisce la validità semantica né che i valori siano autorizzati.
+
+```json
+{
+  "category": "billing",
+  "confidence": 0.86,
+  "needsHumanReview": false
+}
+```
+
+Verifica che `category` appartenga a un insieme consentito, controlla i limiti
+di `confidence` e applica la policy di revisione fuori dal modello.
+
+### Retrieval Augmented Generation (RAG)
+
+1. Recupera documenti permessi per l'utente corrente.
+2. Filtra e riordina i risultati per pertinenza.
+3. Fornisci al modello solo estratti necessari e istruzioni per citare le fonti.
+4. Controlla che le citazioni puntino davvero agli estratti recuperati.
+
+RAG riduce la necessità di incorporare nel modello tutta la conoscenza
+applicativa, ma non impedisce risposte non supportate o istruzioni malevole
+contenute nei documenti. Applica permessi prima del retrieval; il prompt non
+è un confine di sicurezza.
+
+### Tool calling
+
+Il modello può proporre una chiamata a uno strumento; è l'applicazione a
+validare nome, schema, identità, permessi e parametri prima di eseguirla. Usa
+allowlist, timeout, limiti di frequenza e logging senza segreti. Chiedi
+conferma umana prima di azioni irreversibili o che producono effetti esterni.
+
+## Valutare una pipeline
+
+Mantieni un dataset di casi rappresentativi e avversari. Valuta separatamente
+retrieval (copertura e pertinenza), generazione (correttezza rispetto alle
+fonti, completezza) e sistema (latenza, costo, errori, rifiuti corretti).
+Combina metriche automatiche con revisione umana; il giudizio di un altro LLM
+è un segnale, non una prova.
+
+Registra versioni di prompt, modello, indice e parametri insieme ai risultati.
+Ripeti la valutazione quando cambia uno di questi elementi e confronta i casi
+di regressione prima del rilascio.
+
+## Sicurezza e privacy
+
+Considera prompt injection nei contenuti recuperati, esfiltrazione di dati,
+abusi dei tool e output HTML o SQL pericolosi. Tratta input e output come dati
+non attendibili, applica least privilege, minimizza i dati inviati al provider
+e definisci retention e cancellazione. Un modello può suggerire una decisione,
+ma il codice applicativo deve imporre le autorizzazioni.
