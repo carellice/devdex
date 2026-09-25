@@ -25,12 +25,11 @@ const TOTAL_LEVELS = CATEGORIES.reduce(
   0
 );
 
-/** Topic d'ingresso pensati per chi inizia (uno per pilastro tematico). */
+/** Percorso progressivo per chi non ha ancora programmato. */
 const STARTERS = [
-  { categoryId: 'java', topicId: 'oop' },
-  { categoryId: 'spring', topicId: 'spring-boot' },
-  { categoryId: 'database-persistence', topicId: 'acid' },
-  { categoryId: 'api-communication', topicId: 'rest-vs-soap-vs-rpc' }
+  { categoryId: 'computer-science-foundations', topicId: 'programming-basics' },
+  { categoryId: 'computer-science-foundations', topicId: 'programming-languages' },
+  { categoryId: 'java', topicId: 'oop' }
 ];
 
 export default function Home() {
@@ -149,8 +148,11 @@ export default function Home() {
           <span className="section-title__pill">{t('home.start.pill')}</span>
           {t('home.start.title')}
         </h2>
+        <p className="muted" style={{ marginTop: -8, marginBottom: 18 }}>
+          {t('home.start.lead')}
+        </p>
         <div className="grid grid--entries">
-          {STARTERS.map(({ categoryId, topicId }) => {
+          {STARTERS.map(({ categoryId, topicId }, index) => {
             const found = findTopic(categoryId, topicId);
             if (!found) return null;
             const { category, topic } = found;
@@ -163,7 +165,9 @@ export default function Home() {
                 className="entry-card"
                 style={{ '--accent-cat': category.color }}
               >
-                <div className="entry-card__num">{fmtNum(num)}</div>
+                <div className="entry-card__num">
+                  {t('home.start.step', { number: index + 1 })}
+                </div>
                 <div className="entry-card__icon">
                   <TIcon size={22} strokeWidth={2} aria-hidden />
                 </div>
@@ -177,7 +181,7 @@ export default function Home() {
                       className="entry-card__cat-dot"
                       style={{ background: category.color }}
                     />
-                    {tc(category.title)}
+                    {t(`home.start.step${index + 1}`)}
                   </span>
                   <ArrowRight size={14} />
                 </div>

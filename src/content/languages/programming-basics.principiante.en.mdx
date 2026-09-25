@@ -1,0 +1,87 @@
+# Programming from scratch
+
+You do not need to know a language already. Programming means describing a
+precise sequence of instructions for a computer to follow. We will start with
+a toy language; the ideas also apply to Java, Python, JavaScript, and many
+others.
+
+## A program is a recipe
+
+A program is a sequence of steps. To make a cup of tea, you might write:
+
+```text
+1. Fill the kettle.
+2. Heat the water.
+3. Pour the water into a cup.
+4. Wait a few minutes.
+```
+
+The computer follows instructions literally. An ambiguous or missing step can
+produce the wrong result: learning to break a problem into simple steps is
+already programming.
+
+## Data and names
+
+A program can remember information while it runs. A **variable** is a name we
+associate with a value:
+
+```text
+name = "Ada"
+age = 12
+greeting = "Hello, " + name
+```
+
+Here `name` contains text, `age` a number, and `greeting` the result of a
+combination. Real languages have precise rules for declaring and using these
+values.
+
+## Making a choice
+
+A program can choose what to do based on a condition:
+
+```text
+if it is raining:
+    take an umbrella
+otherwise:
+    go out without an umbrella
+```
+
+The condition has a true or false value. This construct is called a
+**selection** or `if` statement.
+
+## Repeating an action
+
+If you need to greet three people, you can repeat the same step:
+
+```text
+for each person in the list:
+    write "Hello, " + person
+```
+
+**Repetition** (or a loop) avoids copying the same instructions. A loop needs
+a condition or list that eventually ends; otherwise, it may never stop.
+
+## A small algorithm
+
+Here are the concepts together, without the syntax of a specific language:
+
+```text
+total = 0
+for each price in the list:
+    total = total + price
+show total
+```
+
+The algorithm adds up the prices and displays the sum. Before writing it in a
+real language, trace it by hand with three prices: 2, 5, and 3. The final
+total is 10.
+
+## Learning from mistakes
+
+A **bug** is an error in a program. Read the message, find the step that
+causes it, then change one thing at a time and try again. Syntax errors mean
+the text does not follow the language rules; logic errors mean the program
+runs but produces an unexpected result.
+
+Next, learn how languages turn these instructions into operations a computer
+can run.

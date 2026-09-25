@@ -77,13 +77,13 @@ export const LEVEL_META = {
 };
 
 /* ---- helper per dichiarare topic con folder ---- */
-const t = (id, title, icon, desc, folder) => ({
+const t = (id, title, icon, desc, folder, levels = LEVELS) => ({
   id,
   title,
   icon,
   desc,
   folder,
-  levels: ['principiante', 'medio', 'avanzato']
+  levels
 });
 
 /* ============================================================
@@ -182,6 +182,17 @@ export const CATEGORIES = [
       en: 'Cross-cutting concepts about languages, tools, and software development.'
     },
     topics: [
+      t(
+        'programming-basics',
+        { it: 'Programmare da zero', en: 'Programming from scratch' },
+        Code2,
+        {
+          it: 'Istruzioni, dati, variabili e primi programmi, senza prerequisiti.',
+          en: 'Instructions, data, variables, and first programs, with no prerequisites.'
+        },
+        'languages',
+        ['principiante']
+      ),
       t(
         'programming-languages',
         { it: 'Tipi di linguaggi', en: 'Programming language types' },

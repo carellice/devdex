@@ -1,0 +1,89 @@
+# Programmare da zero
+
+Non serve conoscere già un linguaggio. Programmare significa descrivere una
+serie di istruzioni precise che il computer esegue. Cominciamo con un
+linguaggio giocattolo: le idee valgono anche in Java, Python, JavaScript e
+molti altri linguaggi.
+
+## Un programma è una ricetta
+
+Un programma è una sequenza di passi. Per preparare una tazza di tè potresti
+scrivere:
+
+```text
+1. Riempi il bollitore.
+2. Scalda l'acqua.
+3. Versa l'acqua nella tazza.
+4. Aspetta qualche minuto.
+```
+
+Il computer segue le istruzioni alla lettera. Un passo ambiguo o mancante può
+produrre un risultato sbagliato: imparare a scomporre un problema in passi
+semplici è già programmare.
+
+## Dati e nomi
+
+Un programma può ricordare informazioni durante l'esecuzione. Una **variabile**
+è un nome a cui associamo un valore:
+
+```text
+nome = "Ada"
+anni = 12
+saluto = "Ciao, " + nome
+```
+
+Qui `nome` contiene testo, `anni` un numero e `saluto` il risultato di una
+combinazione. I linguaggi reali hanno regole precise per dichiarare e usare
+questi valori.
+
+## Fare una scelta
+
+Un programma può scegliere cosa fare in base a una condizione:
+
+```text
+se piove:
+    prendi l'ombrello
+altrimenti:
+    esci senza ombrello
+```
+
+La condizione produce un valore vero o falso. Questo costrutto si chiama
+**selezione** o `if`.
+
+## Ripetere un'azione
+
+Se devi salutare tre persone, puoi ripetere lo stesso passo:
+
+```text
+per ogni persona nell'elenco:
+    scrivi "Ciao, " + persona
+```
+
+La **ripetizione** (o ciclo) evita di copiare le stesse istruzioni. Un ciclo
+deve avere una condizione o un elenco che termina, altrimenti può non fermarsi
+mai.
+
+## Un piccolo algoritmo
+
+Ecco i concetti insieme, descritti senza sintassi di un linguaggio specifico:
+
+```text
+totale = 0
+per ogni prezzo nell'elenco:
+    totale = totale + prezzo
+mostra totale
+```
+
+L'algoritmo accumula i prezzi e mostra la somma. Prima di scriverlo in un
+linguaggio vero, prova a seguirlo a mano con tre prezzi: 2, 5 e 3. Il totale
+finale è 10.
+
+## Imparare dagli errori
+
+Un **bug** è un errore nel programma. Leggi il messaggio, individua il passo
+che lo provoca, poi fai una modifica alla volta e riprova. Gli errori di
+sintassi indicano che il testo non rispetta le regole del linguaggio; quelli
+di logica indicano che il programma gira ma dà un risultato inatteso.
+
+Il passo successivo è capire in che modo i linguaggi trasformano queste
+istruzioni in operazioni eseguibili.
