@@ -2,6 +2,8 @@
 
 DevDex è un'app autonoma per consultare contenuti di sviluppo, svolgere quiz e usare flashcard. Dati, preferenze e progressi rimangono nel browser locale.
 
+**Versione online:** https://carellice.github.io/devdex/
+
 ## Avvio su macOS
 
 Fai doppio clic su `Avvia DevDex.command`. Al primo avvio vengono installate automaticamente le dipendenze, se necessarie, poi l'app si apre nel browser.
