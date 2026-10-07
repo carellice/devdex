@@ -16,9 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PreferencesProvider>
         <LanguageProvider>
           <ProgressProvider>
-            <BrowserRouter>
+            <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
               <MDXProvider components={mdxComponents}>
-                <App logoSrc="/pwa-192x192.png" />
+                <App logoSrc={`${import.meta.env.BASE_URL}pwa-192x192.png`} />
               </MDXProvider>
             </BrowserRouter>
           </ProgressProvider>
